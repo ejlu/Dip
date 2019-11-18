@@ -93,7 +93,10 @@ export default class FeedScreen extends React.Component {
                   url: photoObj.url,
                   caption: photoObj.caption,
                   timestamp: that.timeConverter(photoObj.timestamp),
-                  author: data.username
+                  author: data.username,
+                  authorId: photoObj.author,
+                  upvotes: photoObj.upvotes,
+                  category: photoObj.category
                 })
                 that.setState({
                   refresh: false,
@@ -114,20 +117,6 @@ export default class FeedScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            height: 110,
-            paddingTop: 70,
-            backgroundColor: 'white',
-            borderColor: 'lightgrey',
-            borderBottomWidth: 0.5,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          <Text>Feed</Text>
-        </View>
-
         {this.state.loading ? (
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -140,7 +129,7 @@ export default class FeedScreen extends React.Component {
             onRefresh={this.loadNew}
             data={this.state.pictures}
             keyExtractor={(item, index) => index.toString()}
-            style={{ flex: 1, backgroundColor: '#eee' }}
+            style={{ flex: 1, backgroundColor: 'white' }}
             renderItem={({ item, index }) => (
               <View
                 key={index}
@@ -162,7 +151,17 @@ export default class FeedScreen extends React.Component {
                   }}
                 >
                   {/* <Text>{item.timestamp}</Text> */}
-                  <Text>{item.author}</Text>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('Profile', {
+                        userId: item.authorId
+                      })
+                    }
+                  >
+                    <Text>{item.author}</Text>
+                  </TouchableOpacity>
+                  <Text>{`Category: ${item.category}`}</Text>
+                  <Text>{`Upvotes: ${item.upvotes}`}</Text>
                 </View>
                 <View>
                   <Image
@@ -174,9 +173,18 @@ export default class FeedScreen extends React.Component {
                 </View>
                 <View style={{ padding: 5 }}>
                   <Text>{item.caption}</Text>
-                  <Text style={{ marginTop: 10, textAlign: 'center' }}>
-                    View Comments
-                  </Text>
+
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('Comments', {
+                        userId: item.id
+                      })
+                    }
+                  >
+                    <Text style={{ marginTop: 10, textAlign: 'center' }}>
+                      View Comments
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             )}
@@ -248,7 +256,7 @@ export default class FeedScreen extends React.Component {
 // }
 
 FeedScreen.navigationOptions = {
-  header: null
+  title: 'Feed'
 }
 
 function DevelopmentModeNotice() {
