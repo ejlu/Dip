@@ -1,78 +1,83 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from 'react'
+import { Platform } from 'react-native'
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from 'react-navigation'
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import TabBarIcon from '../components/TabBarIcon'
+import FeedScreen from '../screens/FeedScreen'
+import ProfileScreen from '../screens/ProfileScreen'
+import UploadScreen from '../screens/UploadScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
-  default: {},
-});
+  default: {}
+})
 
-const HomeStack = createStackNavigator(
+const FeedStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Feed: FeedScreen
   },
   config
-);
+)
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+FeedStack.navigationOptions = {
+  tabBarLabel: 'Feed',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
     />
-  ),
-};
+  )
+}
 
-HomeStack.path = '';
+FeedStack.path = ''
 
-const LinksStack = createStackNavigator(
+const ProfileStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Profile: ProfileScreen
   },
   config
-);
+)
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-};
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
+    />
+  )
+}
 
-LinksStack.path = '';
+ProfileStack.path = ''
 
-const SettingsStack = createStackNavigator(
+const UploadStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Upload: UploadScreen
   },
   config
-);
+)
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+UploadStack.navigationOptions = {
+  tabBarLabel: 'Upload',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-cloud-upload' : 'md-cloud-upload'}
+    />
+  )
+}
 
-SettingsStack.path = '';
+UploadStack.path = ''
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  FeedStack,
+  UploadStack,
+  ProfileStack
+})
 
-tabNavigator.path = '';
+tabNavigator.path = ''
 
-export default tabNavigator;
+export default tabNavigator
