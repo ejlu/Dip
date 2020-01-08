@@ -8,12 +8,15 @@ Built partial functionality over one weekend using React Native via Expo and Fir
 
 ## Feed:
 
-![Image of Feed Screen](assets/images/feed-screen.png)
+<!-- ![Image of Feed Screen](assets/images/feed-screen.png) -->
+<img src="assets/images/feed-screen.png" width="100" height="200">
 
 ## Upload:
 
-![Image of Upload Screen](assets/images/upload-screen.png)
+<!-- ![Image of Upload Screen](assets/images/upload-screen.png) -->
+<img src="assets/images/upload-screen.png" width="100" height="200">
 
 ## Profile:
 
-![Image of Profile Screen](assets/images/profile-screen.png)
+<!-- ![Image of Profile Screen](assets/images/profile-screen.png) -->
+<img src="assets/images/profile-screen.png" width="100" height="200">
