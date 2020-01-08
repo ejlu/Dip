@@ -1,15 +1,24 @@
 import firebase from 'firebase'
-
+import {
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+  measurementId
+} from '../secrets'
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBY-VawDv54amehN9QYeqvg0ooqceLs5F4',
-  authDomain: 'dipp-f55d1.firebaseapp.com',
-  databaseURL: 'https://dipp-f55d1.firebaseio.com',
-  projectId: 'dipp-f55d1',
-  storageBucket: 'dipp-f55d1.appspot.com',
-  messagingSenderId: '688477596748',
-  appId: '1:688477596748:web:244826f8d9f9c7f51658e9',
-  measurementId: 'G-PGNDX1550E'
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+  measurementId
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
